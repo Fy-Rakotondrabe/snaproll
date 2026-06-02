@@ -1,73 +1,91 @@
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
 import '../l10n/app_l10n.dart';
+import '../services/settings_service.dart';
+import '../theme/app_colors.dart';
 import '../widgets/snap_app_bar.dart';
 
-class ProgressPage extends StatelessWidget {
+class ProgressPage extends StatefulWidget {
   const ProgressPage({super.key});
+
+  @override
+  State<ProgressPage> createState() => _ProgressPageState();
+}
+
+class _ProgressPageState extends State<ProgressPage> {
+  int _streak = 0;
+  int _record = 0;
+  List<bool> _week = List.filled(7, false);
+
+  @override
+  void initState() {
+    super.initState();
+    SettingsService.spinNotifier.addListener(_reload);
+    _reload();
+  }
+
+  @override
+  void dispose() {
+    SettingsService.spinNotifier.removeListener(_reload);
+    super.dispose();
+  }
+
+  Future<void> _reload() async {
+    final streak = await SettingsService.getCurrentStreak();
+    final record = await SettingsService.getRecordStreak();
+    final week = await SettingsService.getWeekActivity();
+    if (!mounted) return;
+    setState(() {
+      _streak = streak;
+      _record = record;
+      _week = week;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final l = AppL10n.of(context);
+    final colors = context.colors;
     return Scaffold(
-      backgroundColor: context.colors.background,
+      backgroundColor: colors.background,
       appBar: SnapAppBar(title: l.progressTitle, subtitle: l.progressSubtitle),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              const SizedBox(height: 8),
-              // Streak card — big and prominent
-              _DailyStreakCard(streak: 12),
-              const SizedBox(height: 16),
-              _RecordCard(record: 38),
-              const SizedBox(height: 24),
-              Text(
-                l.progressMostDone,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1.2,
-                  color: context.colors.textSecondary,
-                  fontFamily: 'Inter',
-                ),
+            const SizedBox(height: 8),
+            _DailyStreakCard(streak: _streak, l: l, colors: colors),
+            const SizedBox(height: 16),
+            _RecordCard(record: _record, l: l, colors: colors),
+            const SizedBox(height: 24),
+            Text(
+              l.progressThisWeek,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.2,
+                color: colors.textSecondary,
+                fontFamily: 'Inter',
               ),
-              const SizedBox(height: 12),
-              _TopChallengeCard(
-                name: 'Règle des tiers',
-                tag: 'COMPOSITION',
-                tagColor: AppColors.success,
-                count: 23,
-              ),
-              const SizedBox(height: 24),
-              Text(
-                l.progressThisWeek,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1.2,
-                  color: context.colors.textSecondary,
-                  fontFamily: 'Inter',
-                ),
-              ),
-              const SizedBox(height: 12),
-              _WeekGrid(),
-              const SizedBox(height: 32),
-            ],
-          ),
+            ),
+            const SizedBox(height: 12),
+            _WeekGrid(activity: _week, colors: colors),
+            const SizedBox(height: 32),
+          ],
         ),
+      ),
     );
   }
 }
 
 class _DailyStreakCard extends StatelessWidget {
-  const _DailyStreakCard({required this.streak});
+  const _DailyStreakCard({required this.streak, required this.l, required this.colors});
   final int streak;
+  final AppL10n l;
+  final AppColorsExtension colors;
 
   @override
   Widget build(BuildContext context) {
-    final l = AppL10n.of(context);
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -95,46 +113,36 @@ class _DailyStreakCard extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: const Center(
-              child: Icon(
-                Icons.local_fire_department_rounded,
-                color: Color(0xFFFF6B35),
-                size: 34,
-              ),
+              child: Icon(Icons.local_fire_department_rounded,
+                  color: Color(0xFFFF6B35), size: 34),
             ),
           ),
           const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                l.progressStreakLabel,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: context.colors.textSecondary,
-                    ),
-              ),
+              Text(l.progressStreakLabel,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: colors.textSecondary,
+                      )),
               const SizedBox(height: 4),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  Text(
-                    '$streak',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          color: const Color(0xFFFF6B35),
-                          fontFamily: 'SpaceGrotesk',
-                        ),
-                  ),
+                  Text('$streak',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            color: const Color(0xFFFF6B35),
+                          )),
                   const SizedBox(width: 6),
-                  Text(
-                    l.progressStreakUnit,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: context.colors.textSecondary,
-                        ),
-                  ),
+                  Text(l.progressStreakUnit,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: colors.textSecondary,
+                          )),
                 ],
               ),
               Text(
-                l.progressStreakMotivation,
+                streak > 0 ? l.progressStreakMotivation : '',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: const Color(0xFFFF6B35).withValues(alpha: 0.8),
                     ),
@@ -148,72 +156,19 @@ class _DailyStreakCard extends StatelessWidget {
 }
 
 class _RecordCard extends StatelessWidget {
-  const _RecordCard({required this.record});
+  const _RecordCard({required this.record, required this.l, required this.colors});
   final int record;
+  final AppL10n l;
+  final AppColorsExtension colors;
 
   @override
   Widget build(BuildContext context) {
-    final l = AppL10n.of(context);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.colors.surface,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: context.colors.surfaceElevated),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(Icons.emoji_events_rounded,
-              color: AppColors.premium, size: 26),
-          const SizedBox(height: 12),
-          Text(
-            l.progressRecord,
-            style: Theme.of(context).textTheme.labelSmall,
-          ),
-          const SizedBox(height: 2),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(
-                '$record',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.premium,
-                    ),
-              ),
-              const SizedBox(width: 4),
-              Text('j', style: Theme.of(context).textTheme.bodySmall),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TopChallengeCard extends StatelessWidget {
-  const _TopChallengeCard({
-    required this.name,
-    required this.tag,
-    required this.tagColor,
-    required this.count,
-  });
-
-  final String name;
-  final String tag;
-  final Color tagColor;
-  final int count;
-
-  @override
-  Widget build(BuildContext context) {
-    final l = AppL10n.of(context);
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: context.colors.surface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: tagColor.withValues(alpha: 0.25)),
+        border: Border.all(color: colors.surfaceElevated),
       ),
       child: Row(
         children: [
@@ -221,51 +176,32 @@ class _TopChallengeCard extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: tagColor.withValues(alpha: 0.15),
+              color: AppColors.premium.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Icon(Icons.workspace_premium_rounded,
-                color: tagColor, size: 24),
+            child: const Icon(Icons.emoji_events_rounded,
+                color: AppColors.premium, size: 26),
           ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: tagColor.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Text(
-                    tag,
-                    style: TextStyle(
-                      color: tagColor,
-                      fontSize: 9,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Inter',
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(name, style: Theme.of(context).textTheme.titleSmall),
-              ],
-            ),
-          ),
+          const SizedBox(width: 16),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '$count',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: tagColor,
-                      fontSize: 26,
-                    ),
+              Text(l.progressRecord,
+                  style: Theme.of(context).textTheme.labelSmall),
+              const SizedBox(height: 2),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text('$record',
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            color: AppColors.premium,
+                          )),
+                  const SizedBox(width: 4),
+                  Text(l.progressStreakUnit,
+                      style: Theme.of(context).textTheme.bodySmall),
+                ],
               ),
-              Text(l.progressTimes, style: Theme.of(context).textTheme.labelSmall),
             ],
           ),
         ],
@@ -275,23 +211,27 @@ class _TopChallengeCard extends StatelessWidget {
 }
 
 class _WeekGrid extends StatelessWidget {
-  const _WeekGrid();
+  const _WeekGrid({required this.activity, required this.colors});
+  final List<bool> activity;
+  final AppColorsExtension colors;
 
   static const _days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-  static const _done = [true, true, false, true, true, true, false];
 
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now().weekday - 1; // 0=Mon, 6=Sun
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: context.colors.surface,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colors.surfaceElevated),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(_days.length, (i) {
-          final done = _done[i];
+        children: List.generate(7, (i) {
+          final done = i < activity.length && activity[i];
+          final isToday = i == today;
           return Column(
             children: [
               Container(
@@ -300,11 +240,13 @@ class _WeekGrid extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: done
                       ? AppColors.primary.withValues(alpha: 0.2)
-                      : context.colors.surfaceElevated,
+                      : colors.surfaceElevated,
                   shape: BoxShape.circle,
-                  border: done
+                  border: isToday
                       ? Border.all(
-                          color: AppColors.primary.withValues(alpha: 0.5))
+                          color: AppColors.primary.withValues(alpha: 0.6),
+                          width: 1.5,
+                        )
                       : null,
                 ),
                 child: Center(
@@ -312,7 +254,7 @@ class _WeekGrid extends StatelessWidget {
                       ? const Icon(Icons.check_rounded,
                           color: AppColors.primary, size: 18)
                       : Icon(Icons.close_rounded,
-                          color: context.colors.textSecondary, size: 16),
+                          color: colors.textSecondary, size: 16),
                 ),
               ),
               const SizedBox(height: 6),
@@ -320,9 +262,8 @@ class _WeekGrid extends StatelessWidget {
                 _days[i],
                 style: TextStyle(
                   fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color:
-                      done ? context.colors.textPrimary : context.colors.textSecondary,
+                  fontWeight: isToday ? FontWeight.w700 : FontWeight.w500,
+                  color: done ? colors.textPrimary : colors.textSecondary,
                   fontFamily: 'Inter',
                 ),
               ),

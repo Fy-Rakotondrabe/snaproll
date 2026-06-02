@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/lesson.dart';
+import '../services/settings_service.dart';
 import '../theme/app_colors.dart';
 import '../l10n/app_l10n.dart';
 import '../widgets/tag_chip.dart';
@@ -76,6 +77,7 @@ class _GeneratePageState extends State<GeneratePage>
 
   void _spin() {
     if (_spinning || _entries.isEmpty) return;
+    SettingsService.recordSpinToday();
     final rng = Random();
     final next = rng.nextInt(_entries.length);
     if (_entries[next].isColorChasing) {
@@ -85,8 +87,10 @@ class _GeneratePageState extends State<GeneratePage>
     final delta = (6 + rng.nextDouble() * 4) * 2 * pi;
     final from = _baseAngle;
     final to = _baseAngle + delta;
-    _anim = Tween<double>(begin: from, end: to)
-        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
+    _anim = Tween<double>(
+      begin: from,
+      end: to,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
     setState(() {
       _spinning = true;
       _hasSpun = true;
@@ -104,10 +108,7 @@ class _GeneratePageState extends State<GeneratePage>
     final l = AppL10n.of(context);
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: SnapAppBar(
-        title: l.generateTitle,
-        subtitle: l.generateSubtitle,
-      ),
+      appBar: SnapAppBar(title: l.generateTitle, subtitle: l.generateSubtitle),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -318,16 +319,15 @@ class _WheelPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_WheelPainter old) =>
-      old.angle != angle || old.hubColor != hubColor || old.entries.length != entries.length;
+      old.angle != angle ||
+      old.hubColor != hubColor ||
+      old.entries.length != entries.length;
 }
 
 // ── Challenge card ────────────────────────────────────────────────────────────
 
 class _ChallengeCard extends StatelessWidget {
-  const _ChallengeCard({
-    required this.entry,
-    required this.chasingColor,
-  });
+  const _ChallengeCard({required this.entry, required this.chasingColor});
   final _WheelEntry entry;
   final Color chasingColor;
 
@@ -338,17 +338,20 @@ class _ChallengeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: entry.tagColor.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
+        // border: Border.all(
+        //   color: entry.tagColor.withValues(alpha: 0.3),
+        //   width: 1.5,
+        // ),
       ),
+      height: 150,
       child: IntrinsicHeight(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.horizontal(left: Radius.circular(18)),
+              borderRadius: const BorderRadius.horizontal(
+                left: Radius.circular(18),
+              ),
               child: SizedBox(
                 width: 130,
                 child: entry.isColorChasing
@@ -375,15 +378,17 @@ class _ChallengeCard extends StatelessWidget {
                   children: [
                     TagChip(label: entry.tag, color: entry.tagColor),
                     const SizedBox(height: 6),
-                    Text(entry.name,
-                        style: Theme.of(context).textTheme.titleSmall),
+                    Text(
+                      entry.name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     const SizedBox(height: 4),
                     Text(
                       entry.description,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            height: 1.4,
-                            color: colors.textSecondary,
-                          ),
+                        height: 1.4,
+                        color: colors.textSecondary,
+                      ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -402,11 +407,23 @@ class _ColorSwatch extends StatelessWidget {
   const _ColorSwatch({required this.color});
   final Color color;
 
+  static String _name(Color c, BuildContext ctx) {
+    final hue = HSLColor.fromColor(c).hue;
+    final en = Localizations.localeOf(ctx).languageCode == 'en';
+    if (hue < 15 || hue >= 345) return en ? 'Red' : 'Rouge';
+    if (hue < 45) return 'Orange';
+    if (hue < 75) return en ? 'Yellow' : 'Jaune';
+    if (hue < 150) return en ? 'Green' : 'Vert';
+    if (hue < 195) return 'Cyan';
+    if (hue < 255) return en ? 'Blue' : 'Bleu';
+    if (hue < 285) return 'Violet';
+    return en ? 'Pink' : 'Rose';
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Complementary shade for gradient
     final hsl = HSLColor.fromColor(color);
-    final dark = hsl.withLightness((hsl.lightness - 0.2).clamp(0.0, 1.0)).toColor();
+    final dark = hsl.withLightness((hsl.lightness - 0.22).clamp(0.0, 1.0)).toColor();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -415,8 +432,22 @@ class _ColorSwatch extends StatelessWidget {
           colors: [color, dark],
         ),
       ),
-      child: Center(
-        child: Icon(Icons.palette_rounded, color: Colors.white.withValues(alpha: 0.7), size: 32),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.palette_rounded, color: Colors.white70, size: 24),
+          const SizedBox(height: 6),
+          Text(
+            _name(color, context),
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'SpaceGrotesk',
+              fontWeight: FontWeight.w700,
+              fontSize: 15,
+              shadows: [Shadow(color: Colors.black38, blurRadius: 6)],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -435,26 +466,25 @@ class _WheelEntry {
   });
 
   factory _WheelEntry.fromLesson(Lesson l) => _WheelEntry._(
-        tagColor: l.tagColor,
-        name: l.name,
-        tag: l.tag,
-        description: l.shortDescription,
-        isColorChasing: false,
-        lesson: l,
-      );
+    tagColor: l.tagColor,
+    name: l.name,
+    tag: l.tag,
+    description: l.shortDescription,
+    isColorChasing: false,
+    lesson: l,
+  );
 
   factory _WheelEntry.colorChasing({
     required String name,
     required String tag,
     required String description,
-  }) =>
-      _WheelEntry._(
-        tagColor: const Color(0xFFFF6B9D),
-        name: name,
-        tag: tag,
-        description: description,
-        isColorChasing: true,
-      );
+  }) => _WheelEntry._(
+    tagColor: const Color(0xFFFF6B9D),
+    name: name,
+    tag: tag,
+    description: description,
+    isColorChasing: true,
+  );
 
   final Color tagColor;
   final String name;

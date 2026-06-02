@@ -55,10 +55,12 @@ class _LearnPageState extends State<LearnPage> {
     final query = _searchCtrl.text.toLowerCase();
     final tags = _uniqueTags;
     return _lessons.where((l) {
-      final matchesCategory = _selectedCategory == 0 ||
+      final matchesCategory =
+          _selectedCategory == 0 ||
           (_selectedCategory - 1 < tags.length &&
               l.tag == tags[_selectedCategory - 1]);
-      final matchesSearch = query.isEmpty ||
+      final matchesSearch =
+          query.isEmpty ||
           l.name.toLowerCase().contains(query) ||
           l.tag.toLowerCase().contains(query);
       return matchesCategory && matchesSearch;
@@ -243,6 +245,7 @@ class _LessonCard extends StatelessWidget {
           color: context.colors.surface,
           borderRadius: BorderRadius.circular(16),
         ),
+        height: 120,
         child: IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
