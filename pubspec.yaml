@@ -21,11 +21,18 @@ dependencies:
   timezone: ^0.11.0
   flutter_timezone: ^5.1.0
   shared_preferences: ^2.3.3
+  flutter_launcher_icons: "^0.14.4"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
 
 flutter:
   generate: true
