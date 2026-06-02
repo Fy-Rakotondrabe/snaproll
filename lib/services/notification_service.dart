@@ -19,6 +19,9 @@ class NotificationService {
     );
     await _plugin.initialize(
       settings: const InitializationSettings(android: android, iOS: darwin),
+      onDidReceiveNotificationResponse: (details) {
+        // App brought to foreground by tapping notification — no action needed
+      },
     );
   }
 
