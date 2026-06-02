@@ -1,0 +1,153 @@
+{
+  "lessons": [
+    {
+      "id": "frame_within_frame",
+      "name": "Frame Within Frame",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF22C55E",
+      "shortDescription": "Encadre ton sujet avec des éléments naturels ou urbains.",
+      "fullDescription": "Utilise des éléments naturels ou construits pour encadrer ton sujet principal. Cherche des arches, fenêtres ou branches d'arbres.\n\n📌 Exemple : une personne vue à travers une fenêtre ou un portail.\n\n🎯 Challenge : prends une photo où ton sujet est complètement encadré par un élément visible.",
+      "imagePath": "assets/images/lessons/frame.jpg",
+      "photoColor1": "0xFF0D2918",
+      "photoColor2": "0xFF051A0D",
+      "level": "Débutant"
+    },
+    {
+      "id": "contre_jour",
+      "name": "Contre-jour",
+      "tag": "LUMIÈRE",
+      "tagColor": "0xFF4F7CFF",
+      "shortDescription": "Crée des silhouettes avec une forte lumière derrière ton sujet.",
+      "fullDescription": "Place ton sujet face à une source lumineuse forte comme le soleil.\n\n📌 Exemple : silhouette devant un coucher de soleil.\n\n🎯 Challenge : crée une image où le sujet est reconnaissable uniquement par sa silhouette.",
+      "imagePath": "assets/images/lessons/backlight.jpg",
+      "photoColor1": "0xFF0A1F40",
+      "photoColor2": "0xFF040E20",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "symetrie",
+      "name": "Symétrie parfaite",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF9B59B6",
+      "shortDescription": "Crée une image parfaitement équilibrée gauche/droite.",
+      "fullDescription": "Cherche ou crée une symétrie dans ton environnement.\n\n📌 Exemple : reflet dans l’eau ou architecture centrée.\n\n🎯 Challenge : trouve une scène où les deux côtés sont visuellement identiques.",
+      "imagePath": "assets/images/lessons/symmetry.jpg",
+      "photoColor1": "0xFF1A0D2D",
+      "photoColor2": "0xFF0A0619",
+      "level": "Débutant"
+    },
+    {
+      "id": "regle_des_tiers",
+      "name": "Règle des tiers",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF22C55E",
+      "shortDescription": "Place ton sujet sur les points forts de l’image.",
+      "fullDescription": "Divise ton cadre en 9 parties égales et place ton sujet sur une intersection.\n\n📌 Exemple : horizon placé sur le tiers inférieur.\n\n🎯 Challenge : prends 3 photos différentes en respectant la règle des tiers.",
+      "imagePath": "assets/images/lessons/thirds.jpg",
+      "photoColor1": "0xFF0D1A0D",
+      "photoColor2": "0xFF050D05",
+      "level": "Débutant"
+    },
+    {
+      "id": "texture_matiere",
+      "name": "Texture & matière",
+      "tag": "DÉTAIL",
+      "tagColor": "0xFFF59E0B",
+      "shortDescription": "Rends visible ce que l’œil ignore habituellement.",
+      "fullDescription": "Capture des textures comme bois, peau, métal ou tissu.\n\n📌 Exemple : gros plan sur un mur ou une feuille humide.\n\n🎯 Challenge : transforme un objet banal en image artistique.",
+      "imagePath": "assets/images/lessons/texture.jpg",
+      "photoColor1": "0xFF2D1A00",
+      "photoColor2": "0xFF150D00",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "longue_exposition",
+      "name": "Longue exposition",
+      "tag": "LUMIÈRE",
+      "tagColor": "0xFFEF4444",
+      "shortDescription": "Capture le mouvement invisible à l’œil nu.",
+      "fullDescription": "Utilise un temps d’exposition long pour capturer le mouvement.\n\n📌 Exemple : voitures la nuit ou eau lisse.\n\n🎯 Challenge : photographie un mouvement lumineux ou fluide.",
+      "imagePath": "assets/images/lessons/long-exposure.jpg",
+      "photoColor1": "0xFF2D0A0A",
+      "photoColor2": "0xFF1A0505",
+      "level": "Avancé"
+    },
+    {
+      "id": "lumiere_naturelle",
+      "name": "Lumière naturelle",
+      "tag": "LUMIÈRE",
+      "tagColor": "0xFF4F7CFF",
+      "shortDescription": "Utilise uniquement la lumière du soleil.",
+      "fullDescription": "Apprends à utiliser la lumière naturelle pour améliorer tes photos.\n\n📌 Exemple : portrait à la golden hour.\n\n🎯 Challenge : prends une photo sans flash, uniquement lumière naturelle.",
+      "imagePath": "assets/images/lessons/natural-light.jpg",
+      "photoColor1": "0xFF2D1A00",
+      "photoColor2": "0xFF150D00",
+      "level": "Intermédiaire"
+    },
+
+    {
+      "id": "perspective_forcee",
+      "name": "Perspective forcée",
+      "tag": "CRÉATIF",
+      "tagColor": "0xFF00D4FF",
+      "shortDescription": "Joue avec les tailles et illusions visuelles.",
+      "fullDescription": "Manipule la perspective pour créer des illusions d’optique.\n\n📌 Exemple : faire tenir la tour Eiffel dans la main.\n\n🎯 Challenge : crée une illusion où un objet semble beaucoup plus grand ou petit qu’il ne l’est.",
+      "imagePath": "assets/images/lessons/perspective.jpg",
+      "photoColor1": "0xFF001A1F",
+      "photoColor2": "0xFF000C10",
+      "level": "Débutant"
+    },
+
+    {
+      "id": "minimalisme",
+      "name": "Minimalisme",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF10B981",
+      "shortDescription": "Moins d’éléments = plus d’impact visuel.",
+      "fullDescription": "Supprime tout élément inutile dans ton cadre.\n\n📌 Exemple : un objet seul sur fond vide.\n\n🎯 Challenge : fais une photo avec un seul sujet clair et beaucoup d’espace vide.",
+      "imagePath": "assets/images/lessons/minimalist.jpg",
+      "photoColor1": "0xFF0F172A",
+      "photoColor2": "0xFF020617",
+      "level": "Débutant"
+    },
+
+    {
+      "id": "reflexion_eau",
+      "name": "Reflet dans l’eau",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF3B82F6",
+      "shortDescription": "Utilise les reflets pour doubler ton image.",
+      "fullDescription": "Utilise l’eau pour créer un reflet naturel de ton sujet.\n\n📌 Exemple : bâtiment ou ciel reflété dans une flaque.\n\n🎯 Challenge : capture un reflet parfaitement visible et aligné.",
+      "imagePath": "assets/images/lessons/water_reflection.jpg",
+      "photoColor1": "0xFF0A1A2F",
+      "photoColor2": "0xFF050D1A",
+      "level": "Intermédiaire"
+    },
+
+    {
+      "id": "mouvement_fluide",
+      "name": "Mouvement fluide",
+      "tag": "ACTION",
+      "tagColor": "0xFFFB7185",
+      "shortDescription": "Capture la dynamique d’un sujet en mouvement.",
+      "fullDescription": "Apprends à capturer un sujet en mouvement sans le figer complètement.\n\n📌 Exemple : personne qui court ou danse.\n\n🎯 Challenge : fais une photo où le mouvement est visible et dynamique.",
+      "imagePath": "assets/images/lessons/motion.jpg",
+      "photoColor1": "0xFF2A0A0F",
+      "photoColor2": "0xFF12040A",
+      "level": "Intermédiaire"
+    },
+
+    {
+      "id": "street_story",
+      "name": "Street Story",
+      "tag": "STREET",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Capture une scène de vie réelle dans la rue.",
+      "fullDescription": "Photographie des moments spontanés dans la rue.\n\n📌 Exemple : vendeur, enfants qui jouent, scène de marché.\n\n🎯 Challenge : raconte une histoire en une seule image.",
+      "imagePath": "assets/images/lessons/street.jpg",
+      "photoColor1": "0xFF2B1A00",
+      "photoColor2": "0xFF140C00",
+      "level": "Intermédiaire"
+    }
+  ]
+}

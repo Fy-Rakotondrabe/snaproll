@@ -1,0 +1,175 @@
+import 'package:flutter/material.dart';
+
+import 'app_colors.dart';
+
+abstract final class AppTheme {
+  static ThemeData get light => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color(0xFFF0F2FF),
+        fontFamily: 'Inter',
+        colorScheme: const ColorScheme.light(
+          surface: Color(0xFFFFFFFF),
+          surfaceContainerLow: Color(0xFFFFFFFF),
+          surfaceContainer: Color(0xFFF0F2FF),
+          surfaceContainerHigh: Color(0xFFE4E8F5),
+          primary: Color(0xFF4F7CFF),
+          onPrimary: Color(0xFFFFFFFF),
+          secondary: Color(0xFFF4B942),
+          onSecondary: Color(0xFF1A1F36),
+          tertiary: Color(0xFF22C55E),
+          onTertiary: Color(0xFFFFFFFF),
+          error: Color(0xFFEF4444),
+          onError: Color(0xFFFFFFFF),
+          onSurface: Color(0xFF1A1F36),
+          onSurfaceVariant: Color(0xFF6B7280),
+        ),
+        extensions: [AppColorsExtension.light],
+        textTheme: _lightTextTheme,
+      );
+
+  static const TextTheme _lightTextTheme = TextTheme(
+    displayLarge: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w700, fontSize: 57, letterSpacing: -0.25, color: Color(0xFF1A1F36)),
+    displayMedium: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w700, fontSize: 45, color: Color(0xFF1A1F36)),
+    displaySmall: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w700, fontSize: 36, color: Color(0xFF1A1F36)),
+    headlineLarge: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 32, color: Color(0xFF1A1F36)),
+    headlineMedium: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 28, color: Color(0xFF1A1F36)),
+    headlineSmall: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 24, color: Color(0xFF1A1F36)),
+    titleLarge: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 22, color: Color(0xFF1A1F36)),
+    titleMedium: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 16, letterSpacing: 0.15, color: Color(0xFF1A1F36)),
+    titleSmall: TextStyle(fontFamily: 'SpaceGrotesk', fontWeight: FontWeight.w600, fontSize: 14, letterSpacing: 0.1, color: Color(0xFF1A1F36)),
+    bodyLarge: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w400, fontSize: 16, letterSpacing: 0.5, color: Color(0xFF1A1F36)),
+    bodyMedium: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w400, fontSize: 14, letterSpacing: 0.25, color: Color(0xFF1A1F36)),
+    bodySmall: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w400, fontSize: 12, letterSpacing: 0.4, color: Color(0xFF6B7280)),
+    labelLarge: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, fontSize: 14, letterSpacing: 0.1, color: Color(0xFF1A1F36)),
+    labelMedium: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, fontSize: 12, letterSpacing: 0.5, color: Color(0xFF1A1F36)),
+    labelSmall: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, fontSize: 11, letterSpacing: 0.5, color: Color(0xFF6B7280)),
+  );
+
+  static ThemeData get dark => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF0B1020),
+        fontFamily: 'Inter',
+        colorScheme: const ColorScheme.dark(
+          surface: Color(0xFF131B2E),
+          surfaceContainerLow: Color(0xFF131B2E),
+          surfaceContainer: Color(0xFF131B2E),
+          surfaceContainerHigh: Color(0xFF1A233A),
+          primary: AppColors.primary,
+          onPrimary: Color(0xFFFFFFFF),
+          secondary: AppColors.premium,
+          onSecondary: Color(0xFF0B1020),
+          tertiary: AppColors.success,
+          onTertiary: Color(0xFF0B1020),
+          error: AppColors.error,
+          onError: Color(0xFFFFFFFF),
+          onSurface: Color(0xFFFFFFFF),
+          onSurfaceVariant: Color(0xFFB0BACF),
+        ),
+        extensions: [AppColorsExtension.dark],
+        textTheme: _textTheme,
+      );
+
+  static const TextTheme _textTheme = TextTheme(
+    displayLarge: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w700,
+      fontSize: 57,
+      letterSpacing: -0.25,
+      color: Color(0xFFFFFFFF),
+    ),
+    displayMedium: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w700,
+      fontSize: 45,
+      color: Color(0xFFFFFFFF),
+    ),
+    displaySmall: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w700,
+      fontSize: 36,
+      color: Color(0xFFFFFFFF),
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 32,
+      color: Color(0xFFFFFFFF),
+    ),
+    headlineMedium: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 28,
+      color: Color(0xFFFFFFFF),
+    ),
+    headlineSmall: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 24,
+      color: Color(0xFFFFFFFF),
+    ),
+    titleLarge: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 22,
+      color: Color(0xFFFFFFFF),
+    ),
+    titleMedium: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      letterSpacing: 0.15,
+      color: Color(0xFFFFFFFF),
+    ),
+    titleSmall: TextStyle(
+      fontFamily: 'SpaceGrotesk',
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      letterSpacing: 0.1,
+      color: Color(0xFFFFFFFF),
+    ),
+    bodyLarge: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      letterSpacing: 0.5,
+      color: Color(0xFFFFFFFF),
+    ),
+    bodyMedium: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      letterSpacing: 0.25,
+      color: Color(0xFFFFFFFF),
+    ),
+    bodySmall: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      letterSpacing: 0.4,
+      color: Color(0xFFB0BACF),
+    ),
+    labelLarge: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      letterSpacing: 0.1,
+      color: Color(0xFFFFFFFF),
+    ),
+    labelMedium: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      letterSpacing: 0.5,
+      color: Color(0xFFFFFFFF),
+    ),
+    labelSmall: TextStyle(
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w500,
+      fontSize: 11,
+      letterSpacing: 0.5,
+      color: Color(0xFFB0BACF),
+    ),
+  );
+}

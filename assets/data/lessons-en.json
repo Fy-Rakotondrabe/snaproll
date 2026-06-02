@@ -1,0 +1,148 @@
+{
+  "lessons": [
+    {
+      "id": "frame_within_frame",
+      "name": "Frame Within Frame",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF22C55E",
+      "shortDescription": "Use natural or urban elements to frame your subject.",
+      "fullDescription": "Use natural or built elements to frame your main subject. Look for arches, windows, doors, or tree branches.\n\n📌 Example: a person seen through a window or archway.\n\n🎯 Challenge: capture a photo where your subject is fully framed by a visible element.",
+      "imagePath": "assets/images/lessons/frame.jpg",
+      "photoColor1": "0xFF0D2918",
+      "photoColor2": "0xFF051A0D",
+      "level": "Beginner"
+    },
+    {
+      "id": "backlight",
+      "name": "Backlight (Silhouette)",
+      "tag": "LIGHT",
+      "tagColor": "0xFF4F7CFF",
+      "shortDescription": "Place your subject between you and the light source.",
+      "fullDescription": "Position your subject in front of a strong light source like the sun. This creates dramatic silhouettes or glowing outlines.\n\n📌 Example: a person standing in front of a sunset.\n\n🎯 Challenge: create a photo where the subject is only recognizable as a silhouette.",
+      "imagePath": "assets/images/lessons/backlight.jpg",
+      "photoColor1": "0xFF0A1F40",
+      "photoColor2": "0xFF040E20",
+      "level": "Intermediate"
+    },
+    {
+      "id": "perfect_symmetry",
+      "name": "Perfect Symmetry",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF9B59B6",
+      "shortDescription": "Create a visually balanced symmetrical composition.",
+      "fullDescription": "Find or create symmetry in your scene. Use reflections, architecture, or natural elements.\n\n📌 Example: building reflected in water or centered hallway.\n\n🎯 Challenge: capture a scene where left and right sides are nearly identical.",
+      "imagePath": "assets/images/lessons/symmetry.jpg",
+      "photoColor1": "0xFF1A0D2D",
+      "photoColor2": "0xFF0A0619",
+      "level": "Beginner"
+    },
+    {
+      "id": "rule_of_thirds",
+      "name": "Rule of Thirds",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF22C55E",
+      "shortDescription": "Place your subject on key intersection points.",
+      "fullDescription": "Divide your frame into 9 equal parts and place your subject along the intersections for a balanced composition.\n\n📌 Example: horizon on the lower third line or subject on the side.\n\n🎯 Challenge: take 3 different photos using the rule of thirds.",
+      "imagePath": "assets/images/lessons/thirds.jpg",
+      "photoColor1": "0xFF0D1A0D",
+      "photoColor2": "0xFF050D05",
+      "level": "Beginner"
+    },
+    {
+      "id": "texture_detail",
+      "name": "Texture & Detail",
+      "tag": "DETAIL",
+      "tagColor": "0xFFF59E0B",
+      "shortDescription": "Reveal hidden beauty in everyday surfaces.",
+      "fullDescription": "Capture textures like wood, skin, metal, fabric, or stone. Use close-ups and directional light.\n\n📌 Example: macro shot of a rough wall or wet leaf.\n\n🎯 Challenge: turn an ordinary object into an artistic image.",
+      "imagePath": "assets/images/lessons/texture.jpg",
+      "photoColor1": "0xFF2D1A00",
+      "photoColor2": "0xFF150D00",
+      "level": "Intermediate"
+    },
+    {
+      "id": "long_exposure",
+      "name": "Long Exposure",
+      "tag": "LIGHT",
+      "tagColor": "0xFFEF4444",
+      "shortDescription": "Capture motion invisible to the naked eye.",
+      "fullDescription": "Use a slow shutter speed to record movement over time. Requires stability (tripod recommended).\n\n📌 Example: car light trails or silky water.\n\n🎯 Challenge: capture visible motion trails from light or water.",
+      "imagePath": "assets/images/lessons/long-exposure.jpg",
+      "photoColor1": "0xFF2D0A0A",
+      "photoColor2": "0xFF1A0505",
+      "level": "Advanced"
+    },
+    {
+      "id": "natural_light",
+      "name": "Natural Light",
+      "tag": "LIGHT",
+      "tagColor": "0xFF4F7CFF",
+      "shortDescription": "Use sunlight as your main light source.",
+      "fullDescription": "Learn to use natural light effectively, especially during golden hour.\n\n📌 Example: portrait during sunset or window light.\n\n🎯 Challenge: take a photo without flash using only natural light.",
+      "imagePath": "assets/images/lessons/natural-light.jpg",
+      "photoColor1": "0xFF2D1A00",
+      "photoColor2": "0xFF150D00",
+      "level": "Intermediate"
+    },
+    {
+      "id": "forced_perspective",
+      "name": "Forced Perspective",
+      "tag": "CREATIVE",
+      "tagColor": "0xFF00D4FF",
+      "shortDescription": "Create optical illusions using perspective tricks.",
+      "fullDescription": "Manipulate perspective to make objects appear larger, smaller, or closer than they really are.\n\n📌 Example: holding the Eiffel Tower in your hand.\n\n🎯 Challenge: create a believable optical illusion.",
+      "imagePath": "assets/images/lessons/perspective.jpg",
+      "photoColor1": "0xFF001A1F",
+      "photoColor2": "0xFF000C10",
+      "level": "Beginner"
+    },
+    {
+      "id": "minimalism",
+      "name": "Minimalism",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF10B981",
+      "shortDescription": "Less elements = stronger visual impact.",
+      "fullDescription": "Remove all unnecessary elements from your frame. Focus on simplicity and subject isolation.\n\n📌 Example: one object on a clean background.\n\n🎯 Challenge: create a powerful image with only one main subject.",
+      "imagePath": "assets/images/lessons/minimalist.jpg",
+      "photoColor1": "0xFF0F172A",
+      "photoColor2": "0xFF020617",
+      "level": "Beginner"
+    },
+    {
+      "id": "water_reflection",
+      "name": "Water Reflection",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFF3B82F6",
+      "shortDescription": "Use reflections to double your composition.",
+      "fullDescription": "Use water surfaces like puddles, lakes, or rivers to create reflections.\n\n📌 Example: buildings reflected in a puddle.\n\n🎯 Challenge: capture a perfectly aligned reflection shot.",
+      "imagePath": "assets/images/lessons/water_reflection.jpg",
+      "photoColor1": "0xFF0A1A2F",
+      "photoColor2": "0xFF050D1A",
+      "level": "Intermediate"
+    },
+    {
+      "id": "motion_blur",
+      "name": "Motion Blur",
+      "tag": "ACTION",
+      "tagColor": "0xFFFB7185",
+      "shortDescription": "Show movement instead of freezing it.",
+      "fullDescription": "Capture motion blur to express speed, energy, or action.\n\n📌 Example: running person or moving crowd.\n\n🎯 Challenge: take a photo where motion is clearly visible.",
+      "imagePath": "assets/images/lessons/motion.jpg",
+      "photoColor1": "0xFF2A0A0F",
+      "photoColor2": "0xFF12040A",
+      "level": "Intermediate"
+    },
+    {
+      "id": "street_story",
+      "name": "Street Story",
+      "tag": "STREET",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Capture real-life moments in the street.",
+      "fullDescription": "Take candid photos that tell a story about everyday life.\n\n📌 Example: market scene, street vendor, or children playing.\n\n🎯 Challenge: tell a complete story in a single image.",
+      "imagePath": "assets/images/lessons/street.jpg",
+      "photoColor1": "0xFF2B1A00",
+      "photoColor2": "0xFF140C00",
+      "level": "Intermediate"
+    }
+  ]
+}
