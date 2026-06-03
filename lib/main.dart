@@ -12,7 +12,6 @@ import 'theme/app_colors.dart';
 import 'theme/app_theme.dart';
 import 'pages/generate_page.dart';
 import 'pages/progress_page.dart';
-import 'pages/learn_page.dart';
 import 'pages/settings_page.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -105,7 +104,6 @@ class _RootPageState extends State<RootPage> {
   late final List<Widget> _pages = [
     const GeneratePage(),
     const ProgressPage(),
-    const LearnPage(),
     SettingsPage(
       themeNotifier: widget.themeNotifier,
       localeNotifier: widget.localeNotifier,
@@ -118,7 +116,6 @@ class _RootPageState extends State<RootPage> {
     final navItems = [
       _NavItem(icon: Icons.casino_rounded, label: l.navGenerate),
       _NavItem(icon: Icons.bar_chart_rounded, label: l.navProgress),
-      _NavItem(icon: Icons.menu_book_rounded, label: l.navLearn),
       _NavItem(icon: Icons.settings_rounded, label: l.navSettings),
     ];
 

@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/lesson.dart';
+import '../pages/lesson_detail_page.dart';
+import '../pages/color_chasing_detail_page.dart';
 import '../services/settings_service.dart';
 import '../theme/app_colors.dart';
 import '../l10n/app_l10n.dart';
@@ -103,6 +105,31 @@ class _GeneratePageState extends State<GeneratePage>
       });
   }
 
+  void _openDetail(BuildContext ctx) {
+    final entry = _entries[_result];
+    if (entry.isColorChasing) {
+      Navigator.push(
+        ctx,
+        MaterialPageRoute(
+          builder: (c) => ColorChasingDetailPage(
+            name: entry.name,
+            tag: entry.tag,
+            tagColor: entry.tagColor,
+            description: entry.description,
+            chasingColor: _chasingColor,
+          ),
+        ),
+      );
+    } else {
+      Navigator.push(
+        ctx,
+        MaterialPageRoute(
+          builder: (c) => LessonDetailPage(lesson: entry.lesson!),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = AppL10n.of(context);
@@ -159,6 +186,7 @@ class _GeneratePageState extends State<GeneratePage>
                       child: _ChallengeCard(
                         entry: _entries[_result],
                         chasingColor: _chasingColor,
+                        onTap: () => _openDetail(context),
                       ),
                     )
                   : const SizedBox.expand(key: ValueKey('empty')),
@@ -326,77 +354,107 @@ class _WheelPainter extends CustomPainter {
 
 // ── Challenge card ────────────────────────────────────────────────────────────
 
-class _ChallengeCard extends StatelessWidget {
-  const _ChallengeCard({required this.entry, required this.chasingColor});
+class _ChallengeCard extends StatefulWidget {
+  const _ChallengeCard({
+    required this.entry,
+    required this.chasingColor,
+    required this.onTap,
+  });
   final _WheelEntry entry;
   final Color chasingColor;
+  final VoidCallback onTap;
+
+  @override
+  State<_ChallengeCard> createState() => _ChallengeCardState();
+}
+
+class _ChallengeCardState extends State<_ChallengeCard> {
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Container(
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(20),
-        // border: Border.all(
-        //   color: entry.tagColor.withValues(alpha: 0.3),
-        //   width: 1.5,
-        // ),
-      ),
-      height: 150,
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.horizontal(
-                left: Radius.circular(18),
-              ),
-              child: SizedBox(
-                width: 130,
-                child: entry.isColorChasing
-                    ? _ColorSwatch(color: chasingColor)
-                    : Image.asset(
-                        entry.lesson!.imagePath,
-                        fit: BoxFit.cover,
-                        errorBuilder: (ctx, err, stack) => PhotoPlaceholder(
-                          width: 130,
-                          height: double.infinity,
-                          color1: entry.lesson!.photoColor1,
-                          color2: entry.lesson!.photoColor2,
-                          borderRadius: 0,
-                        ),
-                      ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TagChip(label: entry.tag, color: entry.tagColor),
-                    const SizedBox(height: 6),
-                    Text(
-                      entry.name,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      entry.description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        height: 1.4,
-                        color: colors.textSecondary,
-                      ),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTapCancel: () => setState(() => _pressed = false),
+      onTap: widget.onTap,
+      child: Transform.scale(
+        scale: _pressed ? 0.96 : 1.0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: colors.surface,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: widget.entry.tagColor.withValues(
+                  alpha: _pressed ? 0.25 : 0.12,
                 ),
+                blurRadius: _pressed ? 12 : 8,
+                spreadRadius: _pressed ? 2 : 1,
               ),
+            ],
+          ),
+          height: 150,
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.horizontal(
+                    left: Radius.circular(18),
+                  ),
+                  child: SizedBox(
+                    width: 130,
+                    child: widget.entry.isColorChasing
+                        ? _ColorSwatch(color: widget.chasingColor)
+                        : Image.asset(
+                            widget.entry.lesson!.imagePath,
+                            fit: BoxFit.cover,
+                            errorBuilder: (ctx, err, stack) => PhotoPlaceholder(
+                              width: 130,
+                              height: double.infinity,
+                              color1: widget.entry.lesson!.photoColor1,
+                              color2: widget.entry.lesson!.photoColor2,
+                              borderRadius: 0,
+                            ),
+                          ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TagChip(
+                          label: widget.entry.tag,
+                          color: widget.entry.tagColor,
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          widget.entry.name,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          widget.entry.description,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                height: 1.4,
+                                color: colors.textSecondary,
+                              ),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -423,7 +481,9 @@ class _ColorSwatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hsl = HSLColor.fromColor(color);
-    final dark = hsl.withLightness((hsl.lightness - 0.22).clamp(0.0, 1.0)).toColor();
+    final dark = hsl
+        .withLightness((hsl.lightness - 0.22).clamp(0.0, 1.0))
+        .toColor();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -432,22 +492,8 @@ class _ColorSwatch extends StatelessWidget {
           colors: [color, dark],
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.palette_rounded, color: Colors.white70, size: 24),
-          const SizedBox(height: 6),
-          Text(
-            _name(color, context),
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'SpaceGrotesk',
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              shadows: [Shadow(color: Colors.black38, blurRadius: 6)],
-            ),
-          ),
-        ],
+      child: Center(
+        child: Icon(Icons.palette_rounded, color: Colors.white70, size: 24),
       ),
     );
   }
