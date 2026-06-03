@@ -148,6 +148,138 @@
       "photoColor1": "0xFF2B1A00",
       "photoColor2": "0xFF140C00",
       "level": "Intermédiaire"
+    },
+    {
+      "id": "leading_line",
+      "name": "Leading Line",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Utilise des lignes pour guider le regard vers ton sujet.",
+      "fullDescription": "Les lignes directrices attirent naturellement l'œil du spectateur vers un point précis de l'image.\n\nExemples : route, voie ferrée, clôture, trottoir, pont, rangée d'arbres ou bâtiment.\n\nChallenge : compose une photo où les lignes mènent clairement vers ton sujet principal.",
+      "imagePath": "assets/images/lessons/leading_line.jpg",
+      "photoColor1": "0xFF2A2A2A",
+      "photoColor2": "0xFF111111",
+      "level": "Débutant"
+    },
+    {
+      "id": "negative_space",
+      "name": "Espace Négatif",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Utilise l'espace vide pour mettre ton sujet en valeur.",
+      "fullDescription": "L'espace négatif correspond à la zone autour du sujet principal. Une grande quantité d'espace vide peut rendre une photo plus forte, plus élégante et plus percutante.\n\nExemples : une personne devant un ciel dégagé, un arbre isolé dans un champ ou un bateau sur une eau calme.\n\nChallenge : fais en sorte que ton sujet occupe moins d'un tiers de l'image.",
+      "imagePath": "assets/images/lessons/negative_space.jpg",
+      "photoColor1": "0xFFBFD7EA",
+      "photoColor2": "0xFF5B7C99",
+      "level": "Débutant"
+    },
+    {
+      "id": "patterns",
+      "name": "Motifs",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Trouve des formes, couleurs ou objets qui se répètent.",
+      "fullDescription": "Les motifs créent un rythme visuel et rendent les photos plus intéressantes.\n\nExemples : fenêtres d'un immeuble, carreaux de sol, rangées de chaises ou produits alignés.\n\nChallenge : remplis tout le cadre avec un motif répétitif.",
+      "imagePath": "assets/images/lessons/patterns.jpg",
+      "photoColor1": "0xFF5A5A5A",
+      "photoColor2": "0xFF2A2A2A",
+      "level": "Débutant"
+    },
+    {
+      "id": "reflection",
+      "name": "Reflet",
+      "tag": "CREATIVITE",
+      "tagColor": "0xFF00BCD4",
+      "shortDescription": "Utilise les reflets pour créer une composition originale.",
+      "fullDescription": "Les reflets ajoutent de la symétrie, de la profondeur et de l'intérêt visuel.\n\nExemples : flaques d'eau, miroirs, vitrines, lacs ou surfaces brillantes.\n\nChallenge : fais en sorte que le reflet soit aussi important que le sujet lui-même.",
+      "imagePath": "assets/images/lessons/reflection.jpg",
+      "photoColor1": "0xFF3A6073",
+      "photoColor2": "0xFF16222A",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "depth",
+      "name": "Profondeur",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Crée une sensation de distance dans ta photo.",
+      "fullDescription": "La profondeur permet à une image plate de paraître plus immersive.\n\nExemples : des fleurs au premier plan, un sujet au milieu et des montagnes à l'arrière-plan.\n\nChallenge : inclue clairement un premier plan, un plan intermédiaire et un arrière-plan.",
+      "imagePath": "assets/images/lessons/depth.jpg",
+      "photoColor1": "0xFF4CAF50",
+      "photoColor2": "0xFF1B5E20",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "color_contrast",
+      "name": "Contraste de Couleurs",
+      "tag": "COULEUR",
+      "tagColor": "0xFFF44336",
+      "shortDescription": "Utilise des couleurs opposées pour faire ressortir ton sujet.",
+      "fullDescription": "Un fort contraste de couleurs attire immédiatement le regard et donne de l'impact à l'image.\n\nExemples : jaune et bleu, rouge et vert, orange et turquoise.\n\nChallenge : photographie un sujet qui contraste fortement avec son environnement.",
+      "imagePath": "assets/images/lessons/color_contrast.jpg",
+      "photoColor1": "0xFFFF6F00",
+      "photoColor2": "0xFF1565C0",
+      "level": "Débutant"
+    },
+    {
+      "id": "golden_ratio",
+      "name": "Nombre d'Or",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Compose ton image en suivant le flux naturel du nombre d'or.",
+      "fullDescription": "Le nombre d'or est une technique de composition qui guide naturellement le regard à travers l'image.\n\nExemples : escaliers en spirale, routes courbées ou scènes avec une structure naturelle harmonieuse.\n\nChallenge : place ton sujet près du point focal d'une spirale d'or imaginaire.",
+      "imagePath": "assets/images/lessons/golden_ratio.jpg",
+      "photoColor1": "0xFFFFC107",
+      "photoColor2": "0xFF795548",
+      "level": "Avancé"
+    },
+    {
+      "id": "shadow_play",
+      "name": "Jeu d'Ombres",
+      "tag": "LUMIERE",
+      "tagColor": "0xFF9C27B0",
+      "shortDescription": "Utilise les ombres comme élément principal de la photo.",
+      "fullDescription": "Les ombres peuvent créer du mystère, du contraste et des formes abstraites.\n\nExemples : ombres de fenêtres, d'arbres ou longues ombres au coucher du soleil.\n\nChallenge : fais en sorte que l'ombre soit plus importante que l'objet qui la produit.",
+      "imagePath": "assets/images/lessons/shadow_play.jpg",
+      "photoColor1": "0xFF424242",
+      "photoColor2": "0xFF121212",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "bokeh",
+      "name": "Bokeh",
+      "tag": "TECHNIQUE",
+      "tagColor": "0xFF2196F3",
+      "shortDescription": "Crée un arrière-plan doux et flou.",
+      "fullDescription": "Le bokeh désigne la qualité esthétique des zones floues dans une photo.\n\nExemples : portrait avec lumières floues, fleur détachée de l'arrière-plan ou lumières de ville la nuit.\n\nChallenge : garde ton sujet net tout en obtenant un fort flou d'arrière-plan.",
+      "imagePath": "assets/images/lessons/bokeh.jpg",
+      "photoColor1": "0xFF7E57C2",
+      "photoColor2": "0xFF283593",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "portrait_lighting",
+      "name": "Éclairage de Portrait",
+      "tag": "LUMIERE",
+      "tagColor": "0xFF9C27B0",
+      "shortDescription": "Utilise la lumière pour sublimer un portrait.",
+      "fullDescription": "La lumière influence l'ambiance, le relief et la qualité d'un portrait.\n\nExemples : lumière de fenêtre, éclairage latéral, portrait à l'heure dorée ou ombres dramatiques.\n\nChallenge : réalise un portrait intéressant avec une seule source lumineuse.",
+      "imagePath": "assets/images/lessons/portrait_lighting.jpg",
+      "photoColor1": "0xFFFFCC80",
+      "photoColor2": "0xFF6D4C41",
+      "level": "Intermédiaire"
+    },
+    {
+      "id": "storytelling",
+      "name": "Storytelling",
+      "tag": "CREATIVITE",
+      "tagColor": "0xFF00BCD4",
+      "shortDescription": "Raconte une histoire avec une seule photo.",
+      "fullDescription": "Les meilleures photos donnent envie d'imaginer ce qui s'est passé avant et après l'instant capturé.\n\nExemples : un voyageur qui attend un bus, un enfant qui explore ou un artisan au travail.\n\nChallenge : capture une scène qui raconte clairement une histoire sans utiliser de mots.",
+      "imagePath": "assets/images/lessons/storytelling.jpg",
+      "photoColor1": "0xFF8D6E63",
+      "photoColor2": "0xFF3E2723",
+      "level": "Avancé"
     }
   ]
 }

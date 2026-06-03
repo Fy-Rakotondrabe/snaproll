@@ -30,6 +30,13 @@ class _GeneratePageState extends State<GeneratePage>
   bool _hasSpun = false;
   int _result = 0;
   double _baseAngle = 0;
+  final List<int> _recentResults = [];
+
+  // Fixed 10-slot visual wheel — purely decorative, independent of lesson count.
+  static final List<Color> _kWheelColors = List.generate(
+    10,
+    (i) => HSLColor.fromAHSL(1.0, i * 36.0, 0.80, 0.50).toColor(),
+  );
 
   static Color _randomVibrantColor(Random rng) {
     final hue = rng.nextDouble() * 360;
@@ -81,7 +88,21 @@ class _GeneratePageState extends State<GeneratePage>
     if (_spinning || _entries.isEmpty) return;
     SettingsService.recordSpinToday();
     final rng = Random();
-    final next = rng.nextInt(_entries.length);
+
+    // Exclude up to 3 recent results (or half the list, whichever is smaller).
+    final maxExclude = min(_recentResults.length, _entries.length ~/ 2);
+    final excluded = _recentResults.take(maxExclude).toSet();
+    int next;
+    if (excluded.length >= _entries.length) {
+      next = rng.nextInt(_entries.length);
+    } else {
+      do {
+        next = rng.nextInt(_entries.length);
+      } while (excluded.contains(next));
+    }
+    _recentResults.insert(0, next);
+    if (_recentResults.length > 3) _recentResults.removeLast();
+
     if (_entries[next].isColorChasing) {
       _chasingColor = _randomVibrantColor(rng);
     }
@@ -154,7 +175,7 @@ class _GeneratePageState extends State<GeneratePage>
                           child: AnimatedBuilder(
                             animation: _ctrl,
                             builder: (ctx, child) => _Wheel(
-                              entries: _entries,
+                              colors: _kWheelColors,
                               angle: _anim.value,
                               spinning: _spinning,
                             ),
@@ -236,12 +257,12 @@ class _PointerPainter extends CustomPainter {
 
 class _Wheel extends StatelessWidget {
   const _Wheel({
-    required this.entries,
+    required this.colors,
     required this.angle,
     required this.spinning,
   });
 
-  final List<_WheelEntry> entries;
+  final List<Color> colors;
   final double angle;
   final bool spinning;
 
@@ -262,7 +283,7 @@ class _Wheel extends StatelessWidget {
       ),
       child: CustomPaint(
         painter: _WheelPainter(
-          entries: entries,
+          colors: colors,
           angle: angle,
           hubColor: context.colors.background,
         ),
@@ -273,12 +294,12 @@ class _Wheel extends StatelessWidget {
 
 class _WheelPainter extends CustomPainter {
   const _WheelPainter({
-    required this.entries,
+    required this.colors,
     required this.angle,
     required this.hubColor,
   });
 
-  final List<_WheelEntry> entries;
+  final List<Color> colors;
   final double angle;
   final Color hubColor;
 
@@ -286,12 +307,12 @@ class _WheelPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2 - 2;
-    final n = entries.length;
+    final n = colors.length;
     final sweep = 2 * pi / n;
 
     for (int i = 0; i < n; i++) {
       final start = angle + i * sweep - pi / 2;
-      final color = entries[i].tagColor;
+      final color = colors[i];
 
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
@@ -347,9 +368,7 @@ class _WheelPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_WheelPainter old) =>
-      old.angle != angle ||
-      old.hubColor != hubColor ||
-      old.entries.length != entries.length;
+      old.angle != angle || old.hubColor != hubColor;
 }
 
 // ── Challenge card ────────────────────────────────────────────────────────────

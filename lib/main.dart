@@ -27,12 +27,34 @@ void main() async {
 
   // Timezone init
   tz_data.initializeTimeZones();
+  // Some IANA zone names were removed in timezone 0.11.x; map to canonical equivalents.
+  const tzAliases = <String, String>{
+    'Indian/Antananarivo': 'Africa/Nairobi',
+    'Indian/Comoro': 'Africa/Nairobi',
+    'Indian/Mayotte': 'Africa/Nairobi',
+    'Africa/Addis_Ababa': 'Africa/Nairobi',
+    'Africa/Asmara': 'Africa/Nairobi',
+    'Africa/Dar_es_Salaam': 'Africa/Nairobi',
+    'Africa/Djibouti': 'Africa/Nairobi',
+    'Africa/Kampala': 'Africa/Nairobi',
+    'Africa/Mogadishu': 'Africa/Nairobi',
+  };
+  String? detectedTzName;
   try {
-    final dynamic tzResult = await FlutterTimezone.getLocalTimezone();
-    final String tzName = tzResult is String ? tzResult : tzResult.toString();
-    tz.setLocalLocation(tz.getLocation(tzName));
-  } catch (_) {
-    tz.setLocalLocation(tz.UTC);
+    detectedTzName = (await FlutterTimezone.getLocalTimezone()).identifier;
+    final resolvedName = tzAliases[detectedTzName] ?? detectedTzName;
+    tz.setLocalLocation(tz.getLocation(resolvedName));
+  } catch (e) {
+    // Fallback: find a location matching the device's UTC offset
+    final offsetMs = DateTime.now().timeZoneOffset.inMilliseconds;
+    tz.Location? match;
+    for (final loc in tz.timeZoneDatabase.locations.values) {
+      if (tz.TZDateTime.now(loc).timeZoneOffset.inMilliseconds == offsetMs) {
+        match = loc;
+        break;
+      }
+    }
+    tz.setLocalLocation(match ?? tz.UTC);
   }
 
   // Notifications
@@ -148,7 +170,9 @@ class _BottomNav extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: colors.surface,
-        border: Border(top: BorderSide(color: colors.surfaceElevated, width: 1)),
+        border: Border(
+          top: BorderSide(color: colors.surfaceElevated, width: 1),
+        ),
       ),
       child: SafeArea(
         top: false,
