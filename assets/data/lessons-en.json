@@ -143,6 +143,138 @@
       "photoColor1": "0xFF2B1A00",
       "photoColor2": "0xFF140C00",
       "level": "Intermediate"
+    },
+    {
+      "id": "leading_line",
+      "name": "Leading Line",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Use lines to guide the viewer's eye toward your subject.",
+      "fullDescription": "Leading lines naturally draw attention to a specific point in your image and help create a stronger composition.\n\nExamples: roads, railways, fences, sidewalks, bridges, rows of trees, or buildings.\n\nChallenge: create a photo where the lines clearly lead the viewer to the main subject.",
+      "imagePath": "assets/images/lessons/leading_line.jpg",
+      "photoColor1": "0xFF2A2A2A",
+      "photoColor2": "0xFF111111",
+      "level": "Beginner"
+    },
+    {
+      "id": "negative_space",
+      "name": "Negative Space",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Use empty space to emphasize your subject.",
+      "fullDescription": "Negative space is the area around your subject. Using plenty of empty space can make a photo feel cleaner, stronger, and more impactful.\n\nExamples: a person against the sky, a lone tree in a field, or a boat on calm water.\n\nChallenge: make your subject occupy less than one-third of the frame.",
+      "imagePath": "assets/images/lessons/negative_space.jpg",
+      "photoColor1": "0xFFBFD7EA",
+      "photoColor2": "0xFF5B7C99",
+      "level": "Beginner"
+    },
+    {
+      "id": "patterns",
+      "name": "Patterns",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Find repeating shapes, colors, or objects.",
+      "fullDescription": "Patterns create visual rhythm and make photos more engaging.\n\nExamples: windows on a building, floor tiles, rows of chairs, or stacked products.\n\nChallenge: fill the entire frame with a repeating pattern.",
+      "imagePath": "assets/images/lessons/patterns.jpg",
+      "photoColor1": "0xFF5A5A5A",
+      "photoColor2": "0xFF2A2A2A",
+      "level": "Beginner"
+    },
+    {
+      "id": "reflection",
+      "name": "Reflection",
+      "tag": "CREATIVITY",
+      "tagColor": "0xFF00BCD4",
+      "shortDescription": "Use reflections to create unique compositions.",
+      "fullDescription": "Reflections add symmetry, depth, and visual interest.\n\nExamples: puddles, mirrors, windows, lakes, or shiny surfaces.\n\nChallenge: make the reflection as important as the actual subject.",
+      "imagePath": "assets/images/lessons/reflection.jpg",
+      "photoColor1": "0xFF3A6073",
+      "photoColor2": "0xFF16222A",
+      "level": "Intermediate"
+    },
+    {
+      "id": "depth",
+      "name": "Depth",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Create a sense of distance in your photo.",
+      "fullDescription": "Depth makes a two-dimensional image feel more immersive.\n\nExamples: foreground flowers, a middle-ground subject, and mountains in the background.\n\nChallenge: include clear foreground, middle-ground, and background elements.",
+      "imagePath": "assets/images/lessons/depth.jpg",
+      "photoColor1": "0xFF4CAF50",
+      "photoColor2": "0xFF1B5E20",
+      "level": "Intermediate"
+    },
+    {
+      "id": "color_contrast",
+      "name": "Color Contrast",
+      "tag": "COLOR",
+      "tagColor": "0xFFF44336",
+      "shortDescription": "Use contrasting colors to make your subject stand out.",
+      "fullDescription": "Strong color contrast instantly attracts attention and creates visual impact.\n\nExamples: yellow and blue, red and green, or orange and teal.\n\nChallenge: photograph a subject that strongly contrasts with its surroundings.",
+      "imagePath": "assets/images/lessons/color_contrast.jpg",
+      "photoColor1": "0xFFFF6F00",
+      "photoColor2": "0xFF1565C0",
+      "level": "Beginner"
+    },
+    {
+      "id": "golden_ratio",
+      "name": "Golden Ratio",
+      "tag": "COMPOSITION",
+      "tagColor": "0xFFFFA500",
+      "shortDescription": "Compose using the natural flow of the Golden Ratio.",
+      "fullDescription": "The Golden Ratio is a composition technique that guides the viewer's eye through the image in a natural way.\n\nExamples: spiraling staircases, curved roads, or naturally flowing scenes.\n\nChallenge: place your subject near the focal point of an imaginary Golden Spiral.",
+      "imagePath": "assets/images/lessons/golden_ratio.jpg",
+      "photoColor1": "0xFFFFC107",
+      "photoColor2": "0xFF795548",
+      "level": "Advanced"
+    },
+    {
+      "id": "shadow_play",
+      "name": "Shadow Play",
+      "tag": "LIGHTING",
+      "tagColor": "0xFF9C27B0",
+      "shortDescription": "Use shadows as a key element of your composition.",
+      "fullDescription": "Shadows can create mystery, drama, and abstract shapes.\n\nExamples: window shadows, tree shadows, or people casting long shadows.\n\nChallenge: make the shadow more important than the object creating it.",
+      "imagePath": "assets/images/lessons/shadow_play.jpg",
+      "photoColor1": "0xFF424242",
+      "photoColor2": "0xFF121212",
+      "level": "Intermediate"
+    },
+    {
+      "id": "bokeh",
+      "name": "Bokeh",
+      "tag": "TECHNIQUE",
+      "tagColor": "0xFF2196F3",
+      "shortDescription": "Create a smooth blurred background.",
+      "fullDescription": "Bokeh refers to the aesthetic quality of out-of-focus areas in a photo.\n\nExamples: portraits with blurred lights, flowers against a soft background, or city lights at night.\n\nChallenge: keep your subject sharp while creating strong background blur.",
+      "imagePath": "assets/images/lessons/bokeh.jpg",
+      "photoColor1": "0xFF7E57C2",
+      "photoColor2": "0xFF283593",
+      "level": "Intermediate"
+    },
+    {
+      "id": "portrait_lighting",
+      "name": "Portrait Lighting",
+      "tag": "LIGHTING",
+      "tagColor": "0xFF9C27B0",
+      "shortDescription": "Use light to shape and enhance a portrait.",
+      "fullDescription": "Lighting determines the mood, depth, and quality of a portrait.\n\nExamples: window light, side lighting, golden hour portraits, or dramatic shadows.\n\nChallenge: use a single light source to create an interesting portrait.",
+      "imagePath": "assets/images/lessons/portrait_lighting.jpg",
+      "photoColor1": "0xFFFFCC80",
+      "photoColor2": "0xFF6D4C41",
+      "level": "Intermediate"
+    },
+    {
+      "id": "storytelling",
+      "name": "Storytelling",
+      "tag": "CREATIVITY",
+      "tagColor": "0xFF00BCD4",
+      "shortDescription": "Tell a story with a single photograph.",
+      "fullDescription": "Great photos make viewers ask questions and imagine what happened before and after the moment.\n\nExamples: a traveler waiting for a bus, a child exploring, or a craftsman at work.\n\nChallenge: capture a scene that communicates a clear story without words.",
+      "imagePath": "assets/images/lessons/storytelling.jpg",
+      "photoColor1": "0xFF8D6E63",
+      "photoColor2": "0xFF3E2723",
+      "level": "Advanced"
     }
   ]
 }
